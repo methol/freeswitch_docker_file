@@ -1,9 +1,6 @@
 FROM debian:bullseye
 MAINTAINER Andrey Volk <andrey@signalwire.com>
 
-RUN sed -i 's/http:\/\/deb.debian.org/http:\/\/mirrors.aliyun.com/g' /etc/apt/sources.list
-
-
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -yq install git
 
 RUN git clone https://github.com/signalwire/freeswitch /usr/src/freeswitch
@@ -54,4 +51,6 @@ RUN cd /usr/src/freeswitch && make -j`nproc` && make install
 RUN apt-get clean
 
 # Uncomment to cleanup even more
-#RUN rm -rf /usr/src/*
+RUN rm -rf /usr/src/*
+
+ENTRYPOINT ["docker-entrypoint.sh"]
