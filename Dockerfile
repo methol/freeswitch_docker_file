@@ -54,6 +54,3 @@ RUN apt-get clean
 
 # Uncomment to cleanup even more
 RUN rm -rf /usr/src/*
-
-COPY docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
